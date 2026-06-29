@@ -157,11 +157,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             if (Settings.canDrawOverlays(this)) {
                 btnPermissions.text = "Overlay Permission: GRANTED"
                 btnPermissions.isEnabled = false
-                btnPermissions.backgroundTintList = getColorStateList(android.R.color.holo_green_dark)
+                btnPermissions.backgroundTintList = ColorStateList.valueOf(android.graphics.Color.parseColor("#4caf50"))
             } else {
                 btnPermissions.text = "Grant Overlay Permission"
                 btnPermissions.isEnabled = true
-                btnPermissions.backgroundTintList = getColorStateList(android.R.color.holo_purple)
+                btnPermissions.backgroundTintList = ColorStateList.valueOf(android.graphics.Color.parseColor("#a12cff"))
             }
         }
     }

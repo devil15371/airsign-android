@@ -65,7 +65,7 @@ class LockScreenService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("AirSign Active Protection")
             .setContentText("Monitoring hardware motion sensor auth gates.")
-            .setSmallIcon(android.R.drawable.ic_lock_lock)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setPriority(NotificationCompat.PRIORITY_MIN)
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
             .build()
