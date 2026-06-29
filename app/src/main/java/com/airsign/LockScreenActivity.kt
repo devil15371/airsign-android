@@ -108,7 +108,7 @@ class LockScreenActivity : AppCompatActivity(), SensorEventListener {
             sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST)
         }
         tvStatusReport.text = "Ready for Verification"
-        tvStatusReport.setTextColor(resources.getColor(android.R.color.holo_cyan_light, theme))
+        tvStatusReport.setTextColor(resources.getColor(android.R.color.holo_blue_light, theme))
         drawingCanvasLock.clearCanvas()
     }
 

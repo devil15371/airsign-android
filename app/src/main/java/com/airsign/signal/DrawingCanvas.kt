@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import kotlin.math.abs
 
 class DrawingCanvas(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
 
