@@ -7,7 +7,11 @@ import android.view.MotionEvent
 import android.view.View
 import kotlin.math.abs
 
-class DrawingCanvas(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
+class DrawingCanvas @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     private val path = Path()
     private val paint = Paint().apply {
