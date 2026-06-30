@@ -15,11 +15,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.airsign.signal.DTW
 import com.airsign.signal.DrawingCanvas
 import com.airsign.signal.PUF
 import com.airsign.utils.StorageHelper
+import java.io.File
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -48,7 +50,34 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private val OVERLAY_PERMISSION_REQ_CODE = 5372
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Register crash handler to intercept and save any launch failures
+        val crashFile = File(getExternalFilesDir(null), "crash.txt")
+        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
+            try {
+                val sw = java.io.StringWriter()
+                throwable.printStackTrace(java.io.PrintWriter(sw))
+                crashFile.writeText(sw.toString())
+            } catch (e: Exception) {
+                // Fail-safe
+            }
+            android.os.Process.killProcess(android.os.Process.myPid())
+            java.lang.System.exit(10)
+        }
+
         super.onCreate(savedInstanceState)
+
+        // Show crash alert if the app previously failed to start
+        if (crashFile.exists()) {
+            val crashLog = try { crashFile.readText() } catch (e: Exception) { "Failed to read crash log" }
+            try { crashFile.delete() } catch (e: Exception) {}
+            
+            AlertDialog.Builder(this)
+                .setTitle("Launch Crash Log")
+                .setMessage(crashLog)
+                .setPositiveButton("OK", null)
+                .show()
+        }
+
         setContentView(R.layout.activity_main)
 
         // Initialize UI Elements
