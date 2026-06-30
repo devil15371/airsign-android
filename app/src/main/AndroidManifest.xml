@@ -41,7 +41,12 @@
         <service
             android:name=".LockScreenService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Lockscreen security authentication monitor service" />
+        </service>
 
         <!-- BootReceiver: Auto-starts the LockScreenService on device restart -->
         <receiver
